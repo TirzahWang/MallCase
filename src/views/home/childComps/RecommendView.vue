@@ -1,12 +1,10 @@
 <template>
   <div class="recommend">
-    <div v-for="(item,index) in recommends" :key="index" class="recommend-item">
-      <a :href="item.link">
+      <a :href="item.link" v-for="(item,index) in recommends" :key="index" class="recommend-item">
         <img :src="item.image" alt="">
         <div>{{item.title}}</div>
       </a>
     
-    </div>
   </div>
 </template>
 
@@ -36,9 +34,9 @@ export default {
 .recommend{
   display: flex;
   width: 100%;
-  text-align: center;
   padding: 10px 0 20px;
   border-bottom:10px solid #eee;
+  text-align: center;
 }
 .recommend-item{
   flex:1;
@@ -46,5 +44,9 @@ export default {
 .recommend-item img{
   width: 80%;
   margin-bottom: 10px;
+  vertical-align: left;
+}
+.recommend-item:last-child img{
+  margin-right: 8px;
 }
 </style>

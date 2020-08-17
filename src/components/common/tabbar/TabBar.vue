@@ -16,12 +16,13 @@ export default {
 
 <style scoped>
 #tab-bar {
-  position: relative;
   display: flex;
+   background-color: rgb(243, 228, 228);
+
   position: fixed;
   left: 0;
   right: 0;
   bottom: 0;
-  box-shadow: 0px -4px 1px rgba(233, 218, 218, 0.1);
+  box-shadow: 0px -1px 1px rgba(100, 100, 100, .2);
 }
 </style>

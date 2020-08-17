@@ -8,7 +8,7 @@
 
 <script>
 export default {
-  name: "tabBarItem",
+  name: "TabBarItem",
   data() {
     return {
     };
@@ -35,7 +35,8 @@ export default {
   flex: 1;
   text-align: center;
   height: 49px;
-  background-color: rgb(243, 228, 228);
+   font-size: 14px;
+
 }
 .tab-bar-item img {
   padding-top: 5px;
