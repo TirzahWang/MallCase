@@ -13,15 +13,11 @@ export default {
   props:{
     probeType:{
       type:Number,
-      default(){
-        return 0
-      }
+      default :0
     },
      pullUpLoad:{
       type:Boolean,
-      default(){
-        return false
-      }
+      default :false
     }
   },
  mounted(){
