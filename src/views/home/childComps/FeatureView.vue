@@ -9,14 +9,7 @@
 <script>
 export default {
   name: "FeatureView",
-  data() {
-    return {
 
-    }
-  },
-  components: {
-
-  }
 }
 </script>
 

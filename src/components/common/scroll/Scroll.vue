@@ -17,7 +17,7 @@ export default {
     },
      pullUpLoad:{
       type:Boolean,
-      default :false
+      default :true
     }
   },
  mounted(){
@@ -26,18 +26,27 @@ export default {
      probeType:3,
      pullUpLoad:this.pullUpLoad
    })
-   this.scroll.on('scroll',(position)=>{
-       this.$emit('showIcon',position)
-   })
+   if(this.probeType === 2 || this.probeType===3){
    this.scroll.on('pullingUp',()=>{
      this.$emit('showMore')
      this.scroll.finishPullUp()
    })
-  
+   
+   }
+   if(this.pullUpLoad){
+     //指头下拉事件
+     this.scroll.on('scroll',(position)=>{
+       this.$emit('contentScoll',position)
+   })
+   }
  },
  methods:{
    backTop(x,y,time=800){
-     this.scroll.scrollTo(x,y,time)
+     this.scroll && this.scroll.scrollTo(x,y,time)
+   },
+   refresh(){
+     this.scroll && this.scroll.refresh()
+     
    }
  }
 };
