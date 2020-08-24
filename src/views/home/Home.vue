@@ -38,14 +38,15 @@ import NavBar from "components/common/navbar/NavBar";
 import TabControl from "components/content/tabControl/TabControl";
 import GoodsList from "components/content/goods/GoodsList";
 import Scroll from "components/common/scroll/Scroll";
-import BackTop from "components/content/backTop/BackTop";
 
 import { debounce } from "common/utils";
+import { itemListenerMixin, backTopMixin} from "common/mixin";
 
 import { getHomeMultidata, getHomeGoods } from "network/home";
 
 export default {
   name: "Home",
+  mixins:[itemListenerMixin, backTopMixin],
   data() {
     return {
       banners: [],
@@ -56,7 +57,6 @@ export default {
         sell: { page: 0, list: [] },
       },
       currentType: "pop",
-      backActive: false,
       tabOffsetTop: 0,
       istabFixed: false,
       goodsListPositionY: 0,
@@ -69,8 +69,7 @@ export default {
     NavBar,
     TabControl,
     GoodsList,
-    Scroll,
-    BackTop,
+    Scroll
   },
   created() {
     this.getHomeMultidata();
@@ -78,13 +77,8 @@ export default {
     this.getHomeGoods("new");
     this.getHomeGoods("sell");
   },
-  mounted() {
-    //监听item里的图片是否加载完毕
-    const refresh = debounce(this.$refs.scroll.refresh, 50);
-    this.$bus.$on("itemImageLoad", () => {
-      refresh();
-    });
-  },
+  
+
   methods: {
     /* 监听事件处理 */
     getItem(index) {
@@ -101,11 +95,9 @@ export default {
       }
       this.$refs.tabControl1.currentIndex = index;
       this.$refs.tabControl2.currentIndex = index;
-      this.$refs.scroll.backTop(0,-this.goodsListPositionY+40,0)
+      this.$refs.scroll.scrollTo(0,-this.goodsListPositionY+40,0)
     },
-    getBack() {
-      this.$refs.scroll.backTop(0, 0);
-    },
+   
     contentScoll(position) {
       //1.判断backTop是否显示
       this.backActive = position.y <= -990;

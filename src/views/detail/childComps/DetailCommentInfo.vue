@@ -1,29 +1,29 @@
 <template>
-  <div id="detail_comment" v-if="Object.keys(comment).length != 0">
+  <div id="detail_comment" v-if="Object.keys(commentInfo).length != 0">
     <div class="comment_title">
       <span class="comment_name">用户评价</span>
       <span class="comment_more">更多</span>
     </div>
     <div class="comment_info">
       <div class="u_info">
-        <img :src="comment.user.avatar" alt="" />
-        <span>{{ comment.user.uname }}</span>
+        <img :src="commentInfo.user.avatar" alt="" />
+        <span>{{ commentInfo.user.uname }}</span>
       </div>
       <div class="comment_content">
-        <div class="content">{{ comment.content }}</div>
+        <div class="content">{{ commentInfo.content }}</div>
         <p class="content_info">
-          {{ comment.created | dateShow }} {{ comment.style }}
+          {{ commentInfo.created | dateShow }} {{ commentInfo.style }}
         </p>
       </div>
     </div>
-    <div class="shop_reply" v-if="comment.explain != null">
-      {{ comment.explain }}
+    <div class="shop_reply" v-if="commentInfo.explain != null">
+      {{ commentInfo.explain }}
     </div>
-    <div class="comment_img" v-if="comment.images != null">
+    <div class="comment_img" v-if="commentInfo.images != null">
       <img
         :src="item"
         alt=""
-        v-for="(item, index) in comment.images"
+        v-for="(item, index) in commentInfo.images"
         :key="index"
       />
     </div>
@@ -33,7 +33,7 @@
 import { formatDate } from "common/utils.js";
 export default {
   props: {
-    comment: {
+    commentInfo: {
       type: Object,
       default() {
         return {};

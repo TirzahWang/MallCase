@@ -17,7 +17,7 @@ export default {
     },
      pullUpLoad:{
       type:Boolean,
-      default :true
+      default :false
     }
   },
  mounted(){
@@ -41,7 +41,7 @@ export default {
    }
  },
  methods:{
-   backTop(x,y,time=800){
+   scrollTo(x,y,time=800){
      this.scroll && this.scroll.scrollTo(x,y,time)
    },
    refresh(){

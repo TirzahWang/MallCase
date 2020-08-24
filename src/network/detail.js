@@ -3,7 +3,7 @@ export function getDetail(iid) {
   return request(
     {
       url: '/detail',
-      params:{iid}
+      params: { iid }
     })
 }
 export class Goods {
@@ -13,6 +13,7 @@ export class Goods {
     this.newPrice = itemInfo.price
     this.oldPrice = itemInfo.oldPrice
     this.discount = itemInfo.discountDesc
+    this.discountBGColor = itemInfo.discountBgColor
     this.columns = columns
     this.services = services
     this.realPrice = itemInfo.lowNowPrice
@@ -20,19 +21,24 @@ export class Goods {
 }
 export class Shop {
   constructor(shopInfo) {
-    this.logo = shopInfo.shopLogo;
-    this.name = shopInfo.name;
-    this.fans = shopInfo.cFans;
-    this.sells = shopInfo.cSells;
-    this.score = shopInfo.score;
+    this.logo = shopInfo.shopLogo
+    this.name = shopInfo.name
+    this.fans = shopInfo.cFans
+    this.sells = shopInfo.cSells
+    this.score = shopInfo.score
     this.goodsCount = shopInfo.cGoods
   }
 }
 export class GoodsParam {
   constructor(info, rule) {
     // 注: images可能没有值(某些商品有值, 某些没有值)
-    this.image = info.images ? info.images[0] : '';
-    this.infos = info.set;
-    this.sizes = rule.tables;
+    this.image = info.images ? info.images[0] : ''
+    this.infos = info.set
+    this.sizes = rule.tables
   }
+}
+
+//获取商品推荐的数据
+export function getRecommend() {
+  return request('/recommend',)
 }

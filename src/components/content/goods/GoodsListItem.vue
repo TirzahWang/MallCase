@@ -1,6 +1,6 @@
 <template>
-  <div class="goods-item" @click="itemClick">
-    <img :src="goodsItem.show.img" alt @load="imgLoad" />
+  <div class="goods-item" @click="itemClick" v-if="Object.keys.length !==0">
+    <img :src="showImg" alt @load="imgLoad" />
     <div class="goods-info">
       <p>{{goodsItem.title}}</p>
       <span class="price">{{goodsItem.price}}</span>
@@ -20,14 +20,21 @@ export default {
       },
     },
   },
-  methods:{
-    imgLoad(){
-      this.$bus.$emit('itemImageLoad')
+  computed: {
+    showImg() {
+      return this.goodsItem.image || this.goodsItem.show.img;
     },
-    itemClick(){
-      this.$router.push('/detail/'+this.goodsItem.iid)
-    }
-  }
+  },
+  methods: {
+    imgLoad() {
+      this.$bus.$emit("itemImageLoad");
+    },
+    itemClick() {
+      if (this.goodsItem.show) {
+        this.$router.push("/detail/" + this.goodsItem.iid);
+      }
+    },
+  },
 };
 </script>
 

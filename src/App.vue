@@ -3,7 +3,7 @@
     <keep-alive exclude="Detail">
       <router-view></router-view>
     </keep-alive>
-    <main-tab-bar></main-tab-bar>
+    <main-tab-bar v-show="!isHidden"></main-tab-bar>
   </div>
 </template>
 
@@ -14,15 +14,20 @@ export default {
   name: "App",
  data() {
    return {
-     path:''
+     isHidden:false
    }
  },
   components: {
     MainTabBar,
   },
-  created(){
-      console.log(this.$route);
-  }
+  watch:{
+    $route(){
+      if(this.$route.matched[0].path==='/detail/:iid'){
+        this.isHidden=true
+      }
+    }
+  },
+  
 };
 </script>
 
