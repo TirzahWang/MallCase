@@ -3,7 +3,7 @@
     <keep-alive exclude="Detail">
       <router-view></router-view>
     </keep-alive>
-    <main-tab-bar v-show="!isHidden"></main-tab-bar>
+    <main-tab-bar></main-tab-bar>
   </div>
 </template>
 
@@ -17,6 +17,7 @@ export default {
      isHidden:false
    }
  },
+
   components: {
     MainTabBar,
   },

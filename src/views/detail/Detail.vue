@@ -18,7 +18,7 @@
       <goods-list :goods="recommendInfo" ref="recommend" />
     </scroll>
        <back-top @click.native="getBack" v-show="backActive"/>
-    <detail-bottom-bar/>
+    <detail-bottom-bar @addCart="addToCart" />
   </div>
 </template>
 
@@ -45,6 +45,8 @@ import DetailBottomBar from './childComps/DetailBottomBar';
 
 import Scroll from "components/common/scroll/Scroll";
 import GoodsList from "components/content/goods/GoodsList";
+
+import {mapActions} from 'vuex';
 
 export default {
   /*
@@ -113,6 +115,7 @@ export default {
   },
 
   methods: {
+    ...mapActions(['addCart']),
     loadImgOk() {
       //图片加载结束后刷新并保存每个tab栏的位置
       this.$refs.scroll.refresh();
@@ -159,7 +162,22 @@ export default {
     itemClick(index) {
       this.$refs.scroll.scrollTo(0, -this.positionY[index]);
     },
-
+    //添加商品至购物车
+    addToCart(){
+      const product={}
+      product.image=this.TopImages[0]
+      product.title=this.goods.title;
+      product.desc=this.goods.desc
+      product.price=this.goods.realPrice
+      product.iid=this.iid
+      product.count=1
+      product.check=false
+     this.addCart(product).then(res=>{
+       /* setTimeout(()=>{this.isShow=false},1000) */
+       this.$toast.show('添加成功！',1500)
+       })
+   
+    }
     
   },
 
