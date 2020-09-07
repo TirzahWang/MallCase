@@ -1,4 +1,4 @@
-# 22mallcase
+# MallCase
 
 ## Project setup
 ```
